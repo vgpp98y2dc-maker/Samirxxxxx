@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+/* Fondo general */
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #141414 0%, #000 65%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+/* Contenedor */
+.container {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
+
+/* Tarjeta */
+.card {
+  background: linear-gradient(180deg, #0e0e0e, #050505);
+  border-radius: 26px;
+  padding: 32px 26px;
+  box-shadow:
+    0 0 40px rgba(255,255,255,0.04),
+    inset 0 0 20px rgba(255,255,255,0.02);
+  text-align: center;
+}
+
+/* Títulos */
+h1 {
+  font-size: 26px;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 13px;
+  opacity: 0.75;
+  line-height: 1.4;
+  margin-bottom: 22px;
+}
+
+/* Idiomas */
+.languages {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.languages button {
+  flex: 1;
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  color: #aaa;
+  padding: 8px 10px;
+  border-radius: 18px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.languages button:hover {
+  color: #fff;
+  border-color: #555;
+}
+
+.languages .active {
+  border-color: #fff;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255,255,255,0.15);
+}
+
+/* Formularios */
+form {
+  margin-top: 10px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  font-size: 13px;
+  margin: 14px 0 6px;
+  opacity: 0.85;
+}
+
+input {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 14px;
+  border: none;
+  outline: none;
+  background: #111;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: inset 0 0 0 1px #222;
+}
+
+input::placeholder {
+  color: #666;
+}
+
+/* Botón obtener contraseña */
+.key-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #fff;
+  background: linear-gradient(90deg, #7a3b00, #ff9a3c);
+  box-shadow: 0 0 18px rgba(255,154,60,0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.key-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 25px rgba(255,154,60,0.55);
+}
+
+/* Botón entrar */
+.login-btn {
+  width: 100%;
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 1px;
+  background: #1b1b1b;
+  color: #fff;
+  box-shadow: inset 0 0 0 1px #2b2b2b;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-btn:hover {
+  background: #222;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+/* Redes */
+.social {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 22px;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.social span {
+  cursor: pointer;
+}
+
+.social span:hover {
+  opacity: 1;
+}
+
+/* Footer */
+footer {
+  margin-top: 22px;
+  font-size: 11px;
+  line-height: 1.4;
+  opacity: 0.45;
+}
