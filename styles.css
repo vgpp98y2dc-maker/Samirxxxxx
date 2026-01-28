@@ -174,4 +174,42 @@ footer {
   font-size: 11px;
   line-height: 1.5;
   opacity: 0.45;
+}/* BOTÓN OBTENER CONTRASEÑA */
+.key-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  margin: 16px 0 0;
+  padding: 12px 0;
+  width: 100%;
+
+  border-radius: 26px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+
+  color: #fff;
+  text-decoration: none;
+
+  background: linear-gradient(
+    120deg,
+    #6b3400,
+    #ff9a3c,
+    #6b3400
+  );
+  background-size: 200%;
+  animation: shine 3.5s linear infinite;
+
+  box-shadow: 
+    0 0 18px rgba(255,154,60,0.35),
+    inset 0 0 8px rgba(255,255,255,0.08);
+}
+
+.key-btn:hover {
+  transform: scale(0.99);
+  box-shadow:
+    0 0 24px rgba(255,154,60,0.55),
+    inset 0 0 10px rgba(255,255,255,0.12);
 }
