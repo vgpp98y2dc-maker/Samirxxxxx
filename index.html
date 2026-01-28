@@ -1,106 +1,195 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>SAMIR MX – Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SAMIR MX | Acceso</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #111 0%, #000 70%);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 380px;
+      background: rgba(20,20,20,0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.9);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      letter-spacing: 2px;
+    }
+
+    label {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    input {
+      width: 100%;
+      margin-top: 6px;
+      margin-bottom: 18px;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      background: #0e0e0e;
+      color: #fff;
+      font-size: 15px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .btn-get {
+      background: linear-gradient(90deg,#6b3f12,#d38b2c);
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .btn-login {
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    /* OVERLAY VERIFICADO */
+    #verifiedOverlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    #verifiedOverlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .check {
+      text-align: center;
+      animation: pop 0.6s ease;
+    }
+
+    .check .icon {
+      font-size: 70px;
+      color: #4cff4c;
+    }
+
+    .check span {
+      display: block;
+      margin-top: 12px;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(0.6);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="card">
+  <div class="login-box">
+    <h1>SAMIR MX</h1>
 
-      <!-- TÍTULO -->
-      <h1>SAMIR MX</h1>
-      <p class="subtitle">
-        CustomWorks<br>
-        <span>Sistema Integral de Gestión Corporativa</span>
-      </p>
+    <form onsubmit="login(event)">
+      <label>Usuario</label>
+      <input type="text" id="user" placeholder="Ingresa tu usuario" required>
 
-      <!-- IDIOMAS -->
-      <div class="languages">
-        <button class="active">🌐 Español</button>
-        <button>🌐 English</button>
-        <button>🌐 Português</button>
-      </div>
+      <label>Contraseña</label>
+      <input type="password" id="pass" placeholder="Ingresa tu contraseña" required>
 
-      <!-- FORMULARIO -->
-      <form onsubmit="login(event)">
+      <button type="button" class="btn btn-get" onclick="obtenerPassword()">
+        🔑 Obtener contraseña
+      </button>
 
-        <label>Usuario</label>
-        <input
-          type="text"
-          id="user"
-          placeholder="Ingresa tu usuario"
-          required
-        >
+      <button type="submit" class="btn btn-login">
+        ➜ ENTRAR
+      </button>
+    </form>
+  </div>
 
-        <label>Contraseña</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Ingresa tu contraseña"
-          required
-        >
-
-        <!-- OBTENER CONTRASEÑA -->
-        <a
-          href="https://wa.me/526151160719?text=Hola%20quiero%20obtener%20mi%20contraseña"
-          target="_blank"
-          class="key-btn"
-        >
-          🔑 OBTENER CONTRASEÑA
-        </a>
-
-        <!-- ENTRAR -->
-        <button type="submit" class="login-btn">
-          → ENTRAR
-        </button>
-
-      </form>
-
-      <!-- REDES -->
-      <div class="social">
-        <span>Instagram</span>
-        <span>WhatsApp</span>
-        <span>TikTok</span>
-      </div>
-
-      <!-- FOOTER -->
-      <footer>
-        © SAMIR MX CORPORATION<br>
-        Diseñado y desarrollado por Vellkäll Technologies<br>
-        Versión 2.4.1 | Build 2024.1
-      </footer>
-
+  <!-- OVERLAY -->
+  <div id="verifiedOverlay">
+    <div class="check">
+      <div class="icon">✔️</div>
+      <span>Verificado</span>
     </div>
   </div>
 
-  <!-- JAVASCRIPT -->
   <script>
+    /* USUARIOS DE EJEMPLO (clientes) */
+    const usuarios = {
+      "cliente1": "abc123",
+      "cliente2": "pass456",
+      "samir": "samirmx"
+    };
+
     function login(e) {
       e.preventDefault();
 
-      const user = document.getElementById("user").value.trim();
-      const pass = document.getElementById("password").value.trim();
+      const u = document.getElementById("user").value;
+      const p = document.getElementById("pass").value;
 
-      // 🔐 USUARIOS CON CONTRASEÑA ÚNICA
-      const usuarios = {
-        "samir": "samirmx",
-        "juan": "abc123",
-        "maria": "maria2024"
-      };
+      if (usuarios[u] && usuarios[u] === p) {
+        const overlay = document.getElementById("verifiedOverlay");
+        overlay.classList.add("active");
 
-      if (usuarios[user] && usuarios[user] === pass) {
-        alert("Bienvenido " + user.toUpperCase());
-        // Aquí puedes redirigir
-        // window.location.href = "dashboard.html";
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 1800);
       } else {
         alert("Usuario o contraseña incorrectos");
       }
+    }
+
+    function obtenerPassword() {
+      window.open(
+        "https://wa.me/526151160719?text=Hola,%20necesito%20mi%20contraseña",
+        "_blank"
+      );
     }
   </script>
 
