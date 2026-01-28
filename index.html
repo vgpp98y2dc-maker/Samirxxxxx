@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>MODIFAXFF – Login</title>
+  <title>SAMIR MX – Login</title>
   <link rel="stylesheet" href="styles.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -11,28 +11,41 @@
   <div class="container">
     <div class="card">
 
-      <h1>MODIFAXFF</h1>
-      <p class="subtitle">CustomWorks<br>
+      <!-- NOMBRE -->
+      <h1>SAMIR MX</h1>
+      <p class="subtitle">
+        CustomWorks<br>
         <span>Sistema Integral de Gestión Corporativa</span>
       </p>
 
+      <!-- IDIOMAS -->
       <div class="languages">
         <button class="active">🌐 Español</button>
         <button>🌐 English</button>
         <button>🌐 Português</button>
       </div>
 
-      <form>
-        <label>Tu Nombre</label>
-        <input type="text" placeholder="Ingresa tu nombre">
+      <!-- FORMULARIO -->
+      <form onsubmit="login(event)">
+        <label>Usuario</label>
+        <input type="text" id="user" placeholder="Ingresa tu usuario" required>
 
         <label>Contraseña</label>
-        <input type="password" placeholder="Ingresa tu contraseña">
+        <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
 
-        <button type="button" class="key-btn">🔑 OBTENER CONTRASEÑA</button>
+        <!-- BOTÓN WHATSAPP -->
+        <a 
+          class="key-btn"
+          href="https://wa.me/526151160719?text=Hola%20quiero%20obtener%20mi%20contraseña"
+          target="_blank"
+        >
+          🔑 OBTENER CONTRASEÑA
+        </a>
+
         <button type="submit" class="login-btn">→ ENTRAR</button>
       </form>
 
+      <!-- REDES -->
       <div class="social">
         <span>Instagram</span>
         <span>WhatsApp</span>
@@ -40,13 +53,29 @@
       </div>
 
       <footer>
-        © MODIFAXFF CORPORATION<br>
+        © SAMIR MX CORPORATION<br>
         Diseñado y desarrollado por Vellkäll Technologies<br>
         Versión 2.4.1 | Build 2024.1
       </footer>
 
     </div>
   </div>
+
+  <!-- JS SIMPLE -->
+  <script>
+    function login(e) {
+      e.preventDefault();
+
+      const user = document.getElementById("user").value;
+      const pass = document.getElementById("password").value;
+
+      if (user && pass) {
+        alert("Bienvenido " + user);
+        // aquí luego puedes redirigir a otra página
+        // window.location.href = "dashboard.html";
+      }
+    }
+  </script>
 
 </body>
 </html>
