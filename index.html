@@ -79,3 +79,40 @@
 
 </body>
 </html>
+<script>
+  function login(e) {
+    e.preventDefault();
+
+    const user = document.getElementById("user").value;
+    const pass = document.getElementById("password").value;
+
+    // 👇 USUARIO Y CONTRASEÑA
+    const USER_CORRECTO = "samir";
+    const PASS_CORRECTA = "1234";
+
+    if (user === USER_CORRECTO && pass === PASS_CORRECTA) {
+      alert("Bienvenido SAMIR MX");
+      // window.location.href = "dashboard.html";
+    } else {
+      alert("Usuario o contraseña incorrectos");
+    }
+  }
+<script>
+  function login(e) {
+    e.preventDefault();
+
+    const user = document.getElementById("user").value;
+    const pass = document.getElementById("password").value;
+
+    // 👇 USUARIO Y CONTRASEÑA
+    const USER_CORRECTO = "samir";
+    const PASS_CORRECTA = "1234";
+
+    if (user === USER_CORRECTO && pass === PASS_CORRECTA) {
+      alert("Bienvenido SAMIR MX");
+      // window.location.href = "dashboard.html";
+    } else {
+      alert("Usuario o contraseña incorrectos");
+    }
+  }
+</script>
