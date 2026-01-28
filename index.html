@@ -1,197 +1,168 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SAMIR MX | Acceso</title>
+<meta charset="UTF-8">
+<title>SAMIR MX</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<style>
+*{box-sizing:border-box;font-family:Arial}
+body{
+  margin:0;
+  min-height:100vh;
+  background:#000;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: radial-gradient(circle at top, #111 0%, #000 70%);
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+/* LOGIN */
+.login-box{
+  width:360px;
+  padding:30px;
+  background:#111;
+  border-radius:18px;
+  box-shadow:0 0 40px #000;
+}
+h1{text-align:center;letter-spacing:2px}
+label{font-size:14px;opacity:.8}
+input{
+  width:100%;
+  margin:8px 0 16px;
+  padding:14px;
+  border-radius:12px;
+  border:none;
+  background:#000;
+  color:#fff;
+}
+button{
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  border:none;
+  background:#1a1a1a;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    .login-box {
-      width: 100%;
-      max-width: 380px;
-      background: rgba(20,20,20,0.85);
-      backdrop-filter: blur(10px);
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 0 40px rgba(0,0,0,0.9);
-    }
+/* VERIFICADO */
+#verifiedOverlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.95);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.4s;
+  z-index:999;
+}
+#verifiedOverlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
+.check{text-align:center;animation:pop .6s ease}
+.icon{font-size:70px;color:#4cff4c}
+@keyframes pop{
+  from{transform:scale(.5);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
 
-    h1 {
-      text-align: center;
-      margin-bottom: 25px;
-      letter-spacing: 2px;
-    }
-
-    label {
-      font-size: 14px;
-      opacity: 0.8;
-    }
-
-    input {
-      width: 100%;
-      margin-top: 6px;
-      margin-bottom: 18px;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
-      outline: none;
-      background: #0e0e0e;
-      color: #fff;
-      font-size: 15px;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 14px;
-      border-radius: 14px;
-      border: none;
-      cursor: pointer;
-      font-size: 15px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-    .btn-get {
-      background: linear-gradient(90deg,#6b3f12,#d38b2c);
-      color: #fff;
-      margin-bottom: 14px;
-    }
-
-    .btn-login {
-      background: #1a1a1a;
-      color: #fff;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
-    }
-
-    /* OVERLAY VERIFICADO */
-    #verifiedOverlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.95);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.5s ease;
-    }
-
-    #verifiedOverlay.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .check {
-      text-align: center;
-      animation: pop 0.6s ease;
-    }
-
-    .check .icon {
-      font-size: 70px;
-      color: #4cff4c;
-    }
-
-    .check span {
-      display: block;
-      margin-top: 12px;
-      font-size: 22px;
-      letter-spacing: 1px;
-    }
-
-    @keyframes pop {
-      0% {
-        transform: scale(0.6);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-  </style>
+/* DASHBOARD */
+#dashboard{
+  display:none;
+  width:100%;
+  min-height:100vh;
+  padding:20px;
+  background:#000;
+}
+.search{
+  display:flex;
+  gap:10px;
+  margin:20px 0;
+}
+.search input,.search button{
+  padding:14px;
+  border-radius:12px;
+  border:none;
+}
+.card{
+  background:#111;
+  padding:18px;
+  border-radius:16px;
+  margin-bottom:12px;
+}
+.lock{
+  background:#2a1c00;
+  color:#ffb84d;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="login-box">
-    <h1>SAMIR MX</h1>
+<!-- LOGIN -->
+<div class="login-box" id="login">
+  <h1>SAMIR MX</h1>
 
-    <form onsubmit="login(event)">
-      <label>Usuario</label>
-      <input type="text" id="user" placeholder="Ingresa tu usuario" required>
+  <label>Usuario</label>
+  <input id="user" placeholder="Ingresa tu usuario">
 
-      <label>Contraseña</label>
-      <input type="password" id="pass" placeholder="Ingresa tu contraseña" required>
+  <label>Contraseña</label>
+  <input id="pass" type="password" placeholder="Ingresa tu contraseña">
 
-      <button type="button" class="btn btn-get" onclick="obtenerPassword()">
-        🔑 Obtener contraseña
-      </button>
+  <button onclick="login()">ENTRAR</button>
+</div>
 
-      <button type="submit" class="btn btn-login">
-        ➜ ENTRAR
-      </button>
-    </form>
+<!-- VERIFICADO -->
+<div id="verifiedOverlay">
+  <div class="check">
+    <div class="icon">✔️</div>
+    <span>Verificado</span>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <h1>OPTIMIZADOR DE DISPOSITIVOS</h1>
+  <p>Ingresa tu dispositivo para recibir una guía experta</p>
+
+  <div class="search">
+    <input placeholder="Modelo del dispositivo">
+    <button>BUSCAR</button>
   </div>
 
-  <!-- OVERLAY -->
-  <div id="verifiedOverlay">
-    <div class="check">
-      <div class="icon">✔️</div>
-      <span>Verificado</span>
-    </div>
-  </div>
+  <div class="card">📦 Módulos y Comandos</div>
+  <div class="card">⚙️ Generador Modifaxff</div>
+  <div class="card">📘 Módulos para Principiantes</div>
+  <div class="card lock">🔒 Módulos L-GAN</div>
+</div>
 
-  <script>
-    /* USUARIOS DE EJEMPLO (clientes) */
-    const usuarios = {
-      "cliente1": "abc123",
-      "cliente2": "pass456",
-      "samir": "samirmx"
-    };
+<script>
+const usuarios = {
+  "cliente1":"1234",
+  "cliente2":"abcd",
+  "samir":"samirmx"
+};
 
-    function login(e) {
-      e.preventDefault();
+function login(){
+  const u = user.value;
+  const p = pass.value;
 
-      const u = document.getElementById("user").value;
-      const p = document.getElementById("pass").value;
-
-      if (usuarios[u] && usuarios[u] === p) {
-        const overlay = document.getElementById("verifiedOverlay");
-        overlay.classList.add("active");
-
-        setTimeout(() => {
-          window.location.href = "dashboard.html";
-        }, 1800);
-      } else {
-        alert("Usuario o contraseña incorrectos");
-      }
-    }
-
-    function obtenerPassword() {
-      window.open(
-        "https://wa.me/526151160719?text=Hola,%20necesito%20mi%20contraseña",
-        "_blank"
-      );
-    }
-  </script>
+  if(usuarios[u] === p){
+    verifiedOverlay.classList.add("active");
+    setTimeout(()=>{
+      verifiedOverlay.classList.remove("active");
+      document.getElementById("login").style.display="none";
+      document.getElementById("dashboard").style.display="block";
+    },2000);
+  }else{
+    alert("Usuario o contraseña incorrectos");
+  }
+}
+</script>
 
 </body>
 </html>
